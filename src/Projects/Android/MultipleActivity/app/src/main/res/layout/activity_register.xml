@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="org.csystem.android.app.multipleactivity.viewmodel.RegisterActivityListenerViewModel"/>
+        <import type="org.csystem.android.app.multipleactivity.viewmodel.RegisterInfo"/>
+        <import type="org.csystem.app.multipleactivity.library.databinding.converter.RegisterBirthDateStringConverter"/>
+        <variable name="registerInfo" type="RegisterInfo" />
+        <variable name="viewModel" type="RegisterActivityListenerViewModel" />
+        <variable name="confirmPassword" type="String" />
+        <variable name="middleNameExists" type="boolean" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".RegisterActivity">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:hint="@string/edittext_first_name_hint"
+            android:text="@={registerInfo.firstname}" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:inputType="textPersonName"
+                android:hint="@string/edittext_middle_name_hint"
+                android:enabled="@{middleNameExists}"
+                android:text="@={registerInfo.middleName}" />
+
+            <Switch
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/switch_middle_name_text"
+                android:checked="@={middleNameExists}"
+                tools:ignore="UseSwitchCompatOrMaterialXml" />
+        </LinearLayout>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:hint="@string/edittext_last_name_hint"
+            android:text="@={registerInfo.lastName}" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textEmailAddress"
+            android:hint="@string/edittext_email_hint"
+            android:text="@={registerInfo.email}" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPassword"
+            android:hint="@string/edittext_password_hint"
+            android:text="@={registerInfo.password}"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPassword"
+            android:hint="@string/edittext_confirm_password_hint"
+            android:text="@={confirmPassword}"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="date"
+            android:hint="@string/edittext_birth_date_hint"
+            android:text="@={RegisterBirthDateStringConverter.INSTANCE.toStr(registerInfo.birthDate)}" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/button_register_text"
+            android:onClick="@{()->viewModel.handleRegisterButtonClicked()}"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/button_clear_text"
+            android:onClick="@{()->viewModel.handleClearButtonClicked()}"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/button_close_text"
+            android:onClick="@{()->viewModel.handleCloseButtonClicked()}"/>
+    </LinearLayout>
+</layout>
