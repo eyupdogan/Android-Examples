@@ -1,20 +1,21 @@
 package org.csystem.android.app.paymentapp.repository.converter
 
 import androidx.room.TypeConverter
+import java.time.Instant
 import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
+import java.time.ZoneId
 
 class LocalDateTimeConverter
 {
     @TypeConverter
-    fun toLocalDateTime(str:String):LocalDateTime
+    fun toLocalDateTime(milliseconds:Long):LocalDateTime
     {
-        return LocalDateTime.parse(str, DateTimeFormatter.ISO_LOCAL_DATE_TIME)
+        return Instant.ofEpochMilli(milliseconds).atZone(ZoneId.systemDefault()).toLocalDateTime()
     }
 
     @TypeConverter
-    fun toStr(localDateTime: LocalDateTime):String
+    fun toStr(localDateTime: LocalDateTime):Long
     {
-        return DateTimeFormatter.ISO_LOCAL_DATE_TIME.format(localDateTime)
+        return localDateTime.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli()
     }
 }
