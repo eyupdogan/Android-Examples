@@ -7,7 +7,7 @@
         <import type="org.csystem.android.app.geonameswikisearchretrofit.viewmodel.MainActivityViewModel"/>
         <import type="org.csystem.android.app.geonameswikisearchretrofit.viewmodel.converter.MaxRowStringConverter"/>
         <import type="android.widget.ArrayAdapter"/>
-        <import type="org.csystem.android.app.geonameswikisearchretrofit.api.WikiInfo"/>
+        <import type="org.csystem.android.app.geonameswikisearchretrofit.repository.api.WikiInfo"/>
         <variable name="viewModel" type="MainActivityViewModel" />
         <variable name="q" type="String" />
         <variable name="maxRows" type="int" />

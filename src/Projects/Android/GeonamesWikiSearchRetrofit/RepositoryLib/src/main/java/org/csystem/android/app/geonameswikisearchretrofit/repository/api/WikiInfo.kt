@@ -1,4 +1,4 @@
-package org.csystem.android.app.geonameswikisearchretrofit.api
+package org.csystem.android.app.geonameswikisearchretrofit.repository.api
 
 import kotlinx.serialization.Serializable
 

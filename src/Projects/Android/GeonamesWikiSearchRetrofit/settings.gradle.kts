@@ -15,4 +15,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "GeonamesWikiSearchRetrofit"
 include(":app")
- 
+include(":RepositoryLib")

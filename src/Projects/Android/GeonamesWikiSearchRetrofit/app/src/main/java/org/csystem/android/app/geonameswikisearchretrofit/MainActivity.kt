@@ -1,15 +1,15 @@
 package org.csystem.android.app.geonameswikisearchretrofit
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import dagger.hilt.android.AndroidEntryPoint
-import org.csystem.android.app.geonameswikisearchretrofit.api.IGeonamesWikiSearchService
-import org.csystem.android.app.geonameswikisearchretrofit.api.WikiInfo
-import org.csystem.android.app.geonameswikisearchretrofit.api.WikiSearch
 import org.csystem.android.app.geonameswikisearchretrofit.databinding.ActivityMainBinding
+import org.csystem.android.app.geonameswikisearchretrofit.repository.api.IGeonamesWikiSearchService
+import org.csystem.android.app.geonameswikisearchretrofit.repository.api.WikiInfo
+import org.csystem.android.app.geonameswikisearchretrofit.repository.api.WikiSearch
 import org.csystem.android.app.geonameswikisearchretrofit.viewmodel.MainActivityViewModel
 import retrofit2.Call
 import retrofit2.Callback
