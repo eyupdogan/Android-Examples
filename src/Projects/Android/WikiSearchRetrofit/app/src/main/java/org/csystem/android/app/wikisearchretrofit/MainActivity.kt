@@ -1,3 +1,7 @@
+/*--------------------------------------------------------------------------------------------------
+    Bir de activity e özgü paylaşılmayan preferences lar var. 'getPreferences' metodu ile oluşturulur
+    Bu metod isim almaz. Sadece mode parametresi vardır
+--------------------------------------------------------------------------------------------------*/
 package org.csystem.android.app.wikisearchretrofit
 
 import androidx.appcompat.app.AppCompatActivity
@@ -14,7 +18,14 @@ import org.csystem.android.app.wikisearchretrofit.viewmodel.MainActivityViewMode
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 import javax.inject.Inject
+
+const val SHARED_PREF_FILE_NAME = "geonames-input"
+const val LAST_OPEN_BEFORE = "LAST_OPEN_BEFORE"
+const val Q = "Q"
+const val MAX_ROWS = "MAX_ROWS"
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity()
@@ -24,17 +35,31 @@ class MainActivity : AppCompatActivity()
     @Inject
     lateinit var wikiSearchService:IGeonamesWikiSearchService
 
-    private fun initData()
+    @Inject
+    lateinit var dateTimeFormatter:DateTimeFormatter
+
+    private fun loadData()
+    {
+        with(getPreferences(MODE_PRIVATE)){
+            mBinding.lastOpenBefore = getString(LAST_OPEN_BEFORE, "")
+        }
+
+        with(getSharedPreferences(SHARED_PREF_FILE_NAME, MODE_PRIVATE)){
+            mBinding.q = getString(Q, "zonguldak")
+            mBinding.maxRows = getInt(MAX_ROWS,10)
+        }
+    }
+
+    private fun initBoundData()
     {
         mBinding.viewModel = MainActivityViewModel(this)
         mBinding.wikiInfoAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, ArrayList<WikiInfo>())
-        mBinding.q = "zonguldak"
-        mBinding.maxRows = 10
+        loadData()
     }
     private fun initBinding()
     {
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-        initData()
+        initBoundData()
     }
 
     private fun initialize()
@@ -69,5 +94,20 @@ class MainActivity : AppCompatActivity()
                 Toast.makeText(this@MainActivity, "Error occurred:${ex.message}", Toast.LENGTH_SHORT).show()
             }
         })
+    }
+
+    override fun onDestroy()
+    {
+        getPreferences(MODE_PRIVATE).edit().apply {
+            putString(LAST_OPEN_BEFORE, dateTimeFormatter.format(LocalDateTime.now()))
+            apply()
+        }
+
+        getSharedPreferences(SHARED_PREF_FILE_NAME, MODE_PRIVATE).edit().apply {
+            putString(Q, mBinding.q)
+            putInt(MAX_ROWS, mBinding.maxRows)
+            apply()
+        }
+        super.onDestroy()
     }
 }
