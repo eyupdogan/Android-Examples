@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="org.csystem.android.app.hiltapprepeat.viewmodel.listeners.CalculateActivityListenerViewModel"/>
+        <import type="org.csystem.android.app.hiltapprepeat.converter.NumberToStringConverter"/>
+        <import type="org.csystem.android.app.hiltapprepeat.viewmodel.data.OperationInfo"/>
+        <variable name="viewModel" type="CalculateActivityListenerViewModel" />
+        <variable name="operationInfo" type="OperationInfo" />
+        <variable name="result" type="String" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".CalculateActivity">
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:text="@={NumberToStringConverter.INSTANCE.toStr(operationInfo.first)}"
+            />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:text="@={NumberToStringConverter.INSTANCE.toStr(operationInfo.second)}"
+            />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Calculate"
+            android:onClick="@{()->viewModel.handleCalculateButton()}"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{result}"/>
+    </LinearLayout>
+</layout>

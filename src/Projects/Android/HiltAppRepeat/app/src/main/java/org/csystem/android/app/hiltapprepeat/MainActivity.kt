@@ -1,5 +1,6 @@
 package org.csystem.android.app.hiltapprepeat
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -42,6 +43,13 @@ class MainActivity : AppCompatActivity()
         setContentView(R.layout.activity_main)
 
         showDateTime()
+    }
 
+    fun calculateButtonClicked()
+    {
+        Intent(this, CalculateActivity::class.java).apply {
+            startActivity(this)
+        }
+        Toast.makeText(this, "fsşdfşsd",Toast.LENGTH_SHORT).show()
     }
 }

@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <import type="org.csystem.android.app.hiltapprepeat.viewmodel.listeners.MainActivityListenerViewModel"/>
+        <variable name="viewModel" type="MainActivityListenerViewModel" />
     </data>
 
     <LinearLayout
@@ -13,14 +14,12 @@
         android:orientation="vertical"
         tools:context=".MainActivity">
 
-        <TextView
-            android:layout_width="wrap_content"
+        <Button
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Hello World!"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:text="Calculate Page"
+            android:onClick="@{()->viewModel.handleCalculateButton()}"
+            />
 
     </LinearLayout>
 </layout>
