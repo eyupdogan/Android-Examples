@@ -1,7 +1,3 @@
-/*--------------------------------------------------------------------------------------------------
-    Bir de activity e özgü paylaşılmayan preferences lar var. 'getPreferences' metodu ile oluşturulur
-    Bu metod isim almaz. Sadece mode parametresi vardır
---------------------------------------------------------------------------------------------------*/
 package org.csystem.android.app.wikisearchretrofit
 
 import androidx.appcompat.app.AppCompatActivity
