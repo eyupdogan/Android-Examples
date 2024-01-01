@@ -8,10 +8,11 @@ gösterilecektir.
 belirlenen bir sqlite veritabanına yazılacaktır. Yazılma işlemi bir AlertDialog ile onaylandığında
 yapılacaktır
 
++ Local veritabanında sorgulana tarih zaman bilgileri de tutulacaktır
+
 - Veritabanı dosyalarının kapladığı alan save işlemi yapıldığında 1GB'ı geçmiş olacaksa save işlemi
 için uyarı verilecek ve save işlemi yapılmayacaktır.
 
 - GET işlemi sırasında eğer sorgulanan bilgi daha önce sorgulanmış ve kaydedilmişse web servis yerine
 local veritabanından bilgiler elde edilecektir
 
-- Local veritabanında sorgulana tarih zaman bilgileri de tutulacaktır

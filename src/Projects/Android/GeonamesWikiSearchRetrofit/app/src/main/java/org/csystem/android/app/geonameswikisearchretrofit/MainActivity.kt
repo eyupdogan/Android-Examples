@@ -1,7 +1,9 @@
 package org.csystem.android.app.geonameswikisearchretrofit
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -19,6 +21,7 @@ import org.csystem.android.app.geonameswikisearchretrofit.viewmodel.MainActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.io.File
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -26,6 +29,7 @@ class MainActivity : AppCompatActivity()
 {
     private lateinit var mBinding:ActivityMainBinding
     private var mWikiInfoList:List<WikiInfo>? = null
+
 
     @Inject
     lateinit var wikiSearchService: IGeonamesWikiSearchService
@@ -71,6 +75,7 @@ class MainActivity : AppCompatActivity()
             {
                 val wikiSearch = response.body()
 
+
                 if (wikiSearch?.wikiInfo != null) {
                     mWikiInfoList = wikiSearch.wikiInfo
                     wikiSearch.wikiInfo.forEach { mBinding.wikiInfoAdapter!!.add(it) }
@@ -83,6 +88,7 @@ class MainActivity : AppCompatActivity()
             override fun onFailure(call: Call<WikiSearch>, ex: Throwable)
             {
                 Toast.makeText(this@MainActivity, "Exception occurred:${ex.message}", Toast.LENGTH_LONG).show()
+                Log.d("expectpp", "Exception occurred:${ex.message}")
             }
         })
     }
@@ -106,15 +112,25 @@ class MainActivity : AppCompatActivity()
 
     private fun saveWikiInfoList()
     {
+        var cachedDB = applicationContext.getDatabasePath("wikiSearchDb.sqlite3")
+        Toast.makeText(this, cachedDB.length().toString(), Toast.LENGTH_SHORT).show()
+
         with(mWikiInfoList) {
             if (this != null)
             {
                 this.forEach {
-                    wikiInfoDao.save(it)
+                    if(!wikiInfoDao.existByLngAndLat(it.lng, it.lat))
+                        wikiInfoDao.save(it)
                 }
             } else
-                Toast.makeText(this, "error", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@MainActivity, "error", Toast.LENGTH_SHORT).show()
 
         }
+
+//        if(applicationContext.getDatabasePath("wikiSearchDb.sqlite3").length() > 1_073_741_824){
+//            applicationContext.getDatabasePath("wikiSearchDb.sqlite3").delete()
+//            applicationContext.dataDi
+//
+//        }
     }
 }

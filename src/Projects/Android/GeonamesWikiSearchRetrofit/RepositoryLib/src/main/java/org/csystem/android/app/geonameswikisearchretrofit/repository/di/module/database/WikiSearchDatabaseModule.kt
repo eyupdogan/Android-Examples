@@ -18,6 +18,7 @@ object WikiSearchDatabaseModule
     @Singleton
     fun createWikiSearchDatabase(@ApplicationContext context: Context):WikiSearchDatabase
     {
-        return Room.databaseBuilder(context, WikiSearchDatabase::class.java, "wikiSearchDb.sqlite3").allowMainThreadQueries().build()
+        return Room.databaseBuilder(context, WikiSearchDatabase::class.java, "wikiSearchDb.sqlite3")
+            .allowMainThreadQueries().build()
     }
 }

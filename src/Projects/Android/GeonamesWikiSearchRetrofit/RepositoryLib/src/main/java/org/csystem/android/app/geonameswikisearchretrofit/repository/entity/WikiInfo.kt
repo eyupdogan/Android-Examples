@@ -3,7 +3,9 @@ package org.csystem.android.app.geonameswikisearchretrofit.repository.entity
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import kotlinx.serialization.Contextual
 import kotlinx.serialization.Serializable
+import java.time.LocalDateTime
 
 @Serializable
 @Entity(tableName = "wiki_info")
@@ -21,6 +23,8 @@ class WikiInfo {
     var geoNameId = 0
     @ColumnInfo(name = "country_code") var countryCode: String? = null
     var feature: String? = null
+    @Contextual @ColumnInfo(name = "wiki_search_date_time") var wikiSearchDateTime:LocalDateTime = LocalDateTime.now()
+
 
     override fun toString() = "Summary:${summary?.substring(0, 10)}, $lng, $lat"
 }
