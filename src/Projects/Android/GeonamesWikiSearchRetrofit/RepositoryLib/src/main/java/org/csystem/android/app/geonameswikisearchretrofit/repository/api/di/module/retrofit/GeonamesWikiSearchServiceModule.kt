@@ -1,4 +1,4 @@
-package org.csystem.android.app.geonameswikisearchretrofit.repository.api.di.module
+package org.csystem.android.app.geonameswikisearchretrofit.repository.api.di.module.retrofit
 
 import dagger.Module
 import dagger.Provides

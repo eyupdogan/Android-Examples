@@ -11,5 +11,5 @@ interface IGeonamesWikiSearchService
         @Query("q") text: String,
         @Query("maxRows") rowCount: Int,
         @Query("username") username: String
-    ): Call<WikiSearch>
+    ):Call<WikiSearch>
 }

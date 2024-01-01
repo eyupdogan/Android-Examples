@@ -1,4 +1,4 @@
-package org.csystem.android.app.geonameswikisearchretrofit.repository.api.di.module
+package org.csystem.android.app.geonameswikisearchretrofit.repository.api.di.module.retrofit
 
 import com.google.gson.GsonBuilder
 import dagger.Module
@@ -18,7 +18,7 @@ object GeonamesRetrofitModule
 {
     @Provides
     @Singleton
-    fun create(): Retrofit
+    fun create():Retrofit
     {
         val builder = OkHttpClient.Builder()
         val gson = GsonBuilder().setLenient()

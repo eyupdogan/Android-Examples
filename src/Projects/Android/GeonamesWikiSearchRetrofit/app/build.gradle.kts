@@ -68,6 +68,9 @@ dependencies {
     implementation("com.squareup.okhttp3:logging-interceptor:3.4.1")
 
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.2")
+
+    implementation("org.mapstruct:mapstruct:1.5.5.Final")
+    kapt("org.mapstruct:mapstruct-processor:1.5.5.Final")
 }
 
 kapt {

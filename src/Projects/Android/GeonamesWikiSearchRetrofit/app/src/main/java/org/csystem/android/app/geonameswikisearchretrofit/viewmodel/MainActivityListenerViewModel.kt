@@ -3,9 +3,12 @@ package org.csystem.android.app.geonameswikisearchretrofit.viewmodel
 import org.csystem.android.app.geonameswikisearchretrofit.MainActivity
 import java.lang.ref.WeakReference
 
-class MainActivityViewModel(activity: MainActivity)
+class MainActivityListenerViewModel(activity: MainActivity)
 {
     private val mWeakReference = WeakReference(activity)
 
     fun handleGetButtonClicked() = mWeakReference.get()?.getButtonClicked()
+
+    fun handleListViewItemClicked(pos:Int) = mWeakReference.get()?.listViewItemClicked(pos)
+    fun handleSaveButtonClicked() = mWeakReference.get()?.saveButtonClicked()
 }

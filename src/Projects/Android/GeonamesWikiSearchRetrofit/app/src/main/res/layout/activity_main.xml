@@ -4,11 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <import type="org.csystem.android.app.geonameswikisearchretrofit.viewmodel.MainActivityViewModel"/>
+        <import type="org.csystem.android.app.geonameswikisearchretrofit.viewmodel.MainActivityListenerViewModel"/>
         <import type="org.csystem.android.app.geonameswikisearchretrofit.viewmodel.converter.MaxRowStringConverter"/>
         <import type="android.widget.ArrayAdapter"/>
-        <import type="org.csystem.android.app.geonameswikisearchretrofit.repository.api.WikiInfo"/>
-        <variable name="viewModel" type="MainActivityViewModel" />
+        <import type="org.csystem.android.app.geonameswikisearchretrofit.repository.entity.WikiInfo"/>
+        <variable name="viewModel" type="MainActivityListenerViewModel" />
         <variable name="q" type="String" />
         <variable name="maxRows" type="int" />
         <variable name="wikiInfoAdapter" type="ArrayAdapter&lt;WikiInfo&gt;" />
@@ -48,6 +48,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:adapter="@{wikiInfoAdapter}"
+            android:onItemClick="@{(p, v, pos, i)->viewModel.handleListViewItemClicked(pos)}"
+            />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/button_save_text"
+            android:onClick="@{() -> viewModel.handleSaveButtonClicked()}"
             />
     </LinearLayout>
 </layout>
