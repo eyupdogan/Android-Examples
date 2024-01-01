@@ -4,7 +4,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import dagger.hilt.android.AndroidEntryPoint
+import org.csystem.android.app.hiltapprepeat.di.module.datetime.DateInfo
+import org.csystem.android.app.hiltapprepeat.di.module.datetime.DateTimeInfo
+import org.csystem.android.app.hiltapprepeat.di.module.datetime.TimeInfo
 import org.csystem.android.app.hiltapprepeat.di.module.formatter.annotation.DateTimeFormatterInterceptor
+import java.lang.StringBuilder
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import javax.inject.Inject
@@ -13,17 +17,31 @@ import javax.inject.Inject
 class MainActivity : AppCompatActivity()
 {
     @Inject
-    lateinit var dateTime: LocalDateTime
+    lateinit var dateTimeInfo: DateTimeInfo
 
     @Inject
-    @DateTimeFormatterInterceptor
-    lateinit var formatter:DateTimeFormatter
+    lateinit var dateInfo: DateInfo
+
+    @Inject
+    lateinit var timeInfo: TimeInfo
+
+    private fun showDateTime()
+    {
+        StringBuilder().apply {
+            append("DateTime:").append(dateTimeInfo.toString())
+            append("Date:").append(dateInfo.toString())
+            append("Time:").append(timeInfo.toString())
+        }.also {
+            Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?)
     {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        Toast.makeText(this, formatter.format(dateTime), Toast.LENGTH_SHORT).show()
+        showDateTime()
+
     }
 }

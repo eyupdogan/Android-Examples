@@ -1,4 +1,4 @@
-package org.csystem.android.app.hiltapprepeat.datetime
+package org.csystem.android.app.hiltapprepeat.di.module.datetime
 
 import org.csystem.android.app.hiltapprepeat.di.module.formatter.annotation.DateFormatterInterceptor
 import java.time.LocalDate
@@ -6,7 +6,7 @@ import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import javax.inject.Inject
 
-class DateInfo
+class DateInfo @Inject constructor()
 {
     @Inject
     lateinit var date:LocalDate
