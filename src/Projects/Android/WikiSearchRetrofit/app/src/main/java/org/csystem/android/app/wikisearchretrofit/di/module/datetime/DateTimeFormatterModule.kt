@@ -1,4 +1,4 @@
-package org.csystem.android.app.wikisearchretrofit.di.module
+package org.csystem.android.app.wikisearchretrofit.di.module.datetime
 
 import dagger.Module
 import dagger.Provides
