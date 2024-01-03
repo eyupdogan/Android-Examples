@@ -23,3 +23,4 @@ dependencyResolutionManagement {
 rootProject.name = "CSDLibraries"
 include(":org-csystem-android-util-datetime")
 include(":org-csystem-android-activity")
+include(":org-csystem-android-app-retrofit")

@@ -9,7 +9,7 @@ plugins {
 }
 
 android {
-    namespace = "org.csystem.android.app.repositorylib"
+    namespace = "org.csystem.android.util.retrofit"
     compileSdk = 34
 
     defaultConfig {
@@ -29,11 +29,13 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        isCoreLibraryDesugaringEnabled = true
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
+
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
     }
 }
 
@@ -54,16 +56,13 @@ dependencies {
     implementation("com.squareup.retrofit2:retrofit:2.9.0") {
         exclude(module = "okhttp")
     }
-    implementation("com.google.code.gson:gson:2.10") //goole json converter
+    implementation("com.google.code.gson:gson:2.10") //google json converter
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
     implementation("com.squareup.okhttp3:logging-interceptor:3.4.1")
 
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.2")
 
-    implementation("org.mapstruct:mapstruct:1.5.5.Final")
-    kapt("org.mapstruct:mapstruct-processor:1.5.5.Final")
 
-    implementation("org.csystem.android:org-csystem-android-app-retrofit:3.0.0")
 }
 
 kapt {

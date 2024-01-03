@@ -60,6 +60,13 @@ dependencies {
 
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.4")
 
+    implementation("com.squareup.retrofit2:retrofit:2.9.0") {
+        exclude(module = "okhttp")
+    }
+    implementation("com.google.code.gson:gson:2.10") //goole json converter
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation("com.squareup.okhttp3:logging-interceptor:3.4.1")
+
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.2")
 
     implementation("org.mapstruct:mapstruct:1.5.5.Final")

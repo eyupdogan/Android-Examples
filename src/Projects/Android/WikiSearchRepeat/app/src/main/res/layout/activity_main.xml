@@ -5,7 +5,6 @@
 
     <data>
         <import type="org.csystem.android.app.wikisearchrepeat.viewmodel.MainActivityListenerViewModel"/>
-        <import type="android.widget.ArrayAdapter"/>
         <import type="org.csystem.android.app.wikisearchrepeat.viewmodel.converter.MaxRowStringConverter"/>
         <import type="android.widget.ArrayAdapter"/>
         <import type="org.csystem.android.app.repositorylib.api.entity.WikiInfo"/>

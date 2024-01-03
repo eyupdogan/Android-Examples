@@ -10,6 +10,10 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+
+        maven {
+            url = uri("https://raw.github.com/eyodohan/android-2023-maven-repo/main")
+        }
     }
 }
 

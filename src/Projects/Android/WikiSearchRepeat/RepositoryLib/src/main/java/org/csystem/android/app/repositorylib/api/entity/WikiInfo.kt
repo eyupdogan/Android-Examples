@@ -18,7 +18,6 @@ class WikiInfo {
     var geoNameId = 0
     var countryCode: String? = null
     var feature: String? = null
-    var wikiSearchDateTime: LocalDateTime = LocalDateTime.now()
 
     override fun toString() = "Summary:${summary?.substring(0, 10)}, $lng, $lat"
 }

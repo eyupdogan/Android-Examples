@@ -1,6 +1,5 @@
 package org.csystem.android.app.geonameswikisearchretrofit
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -14,14 +13,13 @@ import org.csystem.android.app.geonameswikisearchretrofit.databinding.ActivityMa
 import org.csystem.android.app.geonameswikisearchretrofit.di.module.mapper.IWikiInfoMapper
 import org.csystem.android.app.geonameswikisearchretrofit.global.key.WIKI_INFO
 import org.csystem.android.app.geonameswikisearchretrofit.repository.api.IGeonamesWikiSearchService
-import org.csystem.android.app.geonameswikisearchretrofit.repository.entity.WikiInfo
 import org.csystem.android.app.geonameswikisearchretrofit.repository.api.WikiSearch
 import org.csystem.android.app.geonameswikisearchretrofit.repository.dao.IWikiInfoDao
+import org.csystem.android.app.geonameswikisearchretrofit.repository.entity.WikiInfo
 import org.csystem.android.app.geonameswikisearchretrofit.viewmodel.MainActivityListenerViewModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.io.File
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -70,25 +68,21 @@ class MainActivity : AppCompatActivity()
         mBinding.wikiInfoAdapter!!.clear()
         val call = wikiSearchService.findByQ(mBinding.q!!, mBinding.maxRows, "csystem")
 
-        call.enqueue(object :Callback<WikiSearch>{
-            override fun onResponse(call: Call<WikiSearch>, response: Response<WikiSearch>)
+        request(call)
+    }
+
+    private fun<T> request(call: Call<T>)
+    {
+        call.enqueue(object : Callback<T>
+        {
+            override fun onResponse(call: Call<T>, response: Response<T>)
             {
-                val wikiSearch = response.body()
-
-
-                if (wikiSearch?.wikiInfo != null) {
-                    mWikiInfoList = wikiSearch.wikiInfo
-                    wikiSearch.wikiInfo.forEach { mBinding.wikiInfoAdapter!!.add(it) }
-                    mBinding.wikiInfoAdapter!!.notifyDataSetChanged()
-                }
-                else
-                    Toast.makeText(this@MainActivity, "Error in service", Toast.LENGTH_LONG).show()
+                TODO("Not yet implemented")
             }
 
-            override fun onFailure(call: Call<WikiSearch>, ex: Throwable)
+            override fun onFailure(call: Call<T>, t: Throwable)
             {
-                Toast.makeText(this@MainActivity, "Exception occurred:${ex.message}", Toast.LENGTH_LONG).show()
-                Log.d("expectpp", "Exception occurred:${ex.message}")
+                TODO("Not yet implemented")
             }
         })
     }
