@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">WikiSearchRepeat</string>
+    <string name="button_get_text">GET</string>
+    <string name="button_save_text">Save</string>
+    <string name="edittext_q_hint">Input text</string>
+    <string name="edittext_max_rows_hint">Input Maximum Rows</string>
+    <string name="save_wiki_info_alert_dialog_title">Save Wiki Info List</string>
+    <string name="save_wiki_info_alert_dialog_message">All info will save local db</string>
+    <string name="save_wiki_info_alert_dialog_ok_text">Yes</string>
+    <string name="save_wiki_info_alert_dialog_no_text">No</string>
+</resources>

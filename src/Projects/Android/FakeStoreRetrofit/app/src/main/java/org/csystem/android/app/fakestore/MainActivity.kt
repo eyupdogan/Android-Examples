@@ -12,7 +12,7 @@ import org.csystem.android.app.fakestore.di.module.mapper.IProductMapper
 import org.csystem.android.app.fakestore.viewmodel.data.ProductData
 import org.csystem.android.app.fakestore.viewmodel.listeners.MainActivityListenerViewModel
 import org.csystem.android.app.repository.api.IProductService
-import org.csystem.android.app.repository.api.ProductList
+import org.csystem.android.app.repository.api.Product
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -56,25 +56,25 @@ class MainActivity : AppCompatActivity()
         mBinding.productListAdapter!!.clear()
         val call = productListService.getAllProducts()
 
-        call.enqueue(object:Callback<ProductList>{
-            override fun onResponse(call: Call<ProductList>, response: Response<ProductList>)
+        call.enqueue(object:Callback<List<Product>>{
+            override fun onResponse(call: Call<List<Product>>, response: Response<List<Product>>)
             {
                 val productList = response.body()
                 Log.d("exvep", "productList?.list.toString()")
-//                if(productList?.list!!.isNotEmpty()){
-////                    productList.list.forEach {
-////                        mBinding.productListAdapter!!.add(productMapper.toProductDataDTO(it))
-////                        mBinding.productListAdapter!!.notifyDataSetChanged()
-////                    }
-//                }else
-//                    Toast.makeText(this@MainActivity, "Error occurred", Toast.LENGTH_SHORT).show()
-
+                if(productList!!.isNotEmpty()){
+                    productList.forEach {
+                        mBinding.productListAdapter!!.add(productMapper.toProductDataDTO(it))
+                        mBinding.productListAdapter!!.notifyDataSetChanged()
+                    }
+                }else
+                    Toast.makeText(this@MainActivity, "Error occurred", Toast.LENGTH_SHORT).show()
             }
 
-            override fun onFailure(call: Call<ProductList>, ex: Throwable)
+
+
+            override fun onFailure(call: Call<List<Product>>, t: Throwable)
             {
-                Toast.makeText(this@MainActivity, "Exception occurred:${ex.message}", Toast.LENGTH_LONG).show()
-                Log.d("exvep", "Exception occurred:${ex.message}")
+                Toast.makeText(this@MainActivity, "Error occurred onFailure", Toast.LENGTH_SHORT).show()
             }
         })
     }
