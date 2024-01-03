@@ -63,7 +63,7 @@ dependencies {
     implementation("org.mapstruct:mapstruct:1.5.5.Final")
     kapt("org.mapstruct:mapstruct-processor:1.5.5.Final")
 
-    implementation("org.csystem.android:org-csystem-android-app-retrofit:3.0.0")
+//    implementation("org.csystem.android:org-csystem-android-app-retrofit:3.0.1")
 }
 
 kapt {
