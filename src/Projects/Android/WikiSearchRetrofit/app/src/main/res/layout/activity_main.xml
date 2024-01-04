@@ -4,11 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <import type="org.csystem.android.app.wikisearchretrofit.viewmodel.MainActivityViewModel"/>
-        <import type="org.csystem.android.app.wikisearchretrofit.viewmodel.converter.MaxRowStringConverter"/>
-        <import type="org.csystem.android.app.wikisearchretrofit.api.WikiInfo"/>
+        <import type="org.csystem.android.app.search.viewmodel.MainActivityViewModel"/>
+        <import type="org.csystem.android.app.search.viewmodel.converter.MaxRowStringConverter"/>
+        <import type="org.csystem.android.app.search.api.WikiInfo"/>
         <import type="android.widget.ArrayAdapter"/>
-        <variable name="viewModel" type="MainActivityViewModel" />
+        <variable name="viewModel" type="org.csystem.android.app.search.viewmodel.MainActivityViewModel" />
         <variable name="lastOpenBefore" type="String" />
         <variable name="q" type="String" />
         <variable name="maxRows" type="int" />
@@ -19,7 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context=".MainActivity">
+        tools:context="org.csystem.android.app.search.MainActivity">
 
         <TextView
             android:layout_width="match_parent"

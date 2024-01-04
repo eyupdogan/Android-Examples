@@ -13,6 +13,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "SomeGeonamesRetrofit"
+rootProject.name = "RandomTextGenerator"
 include(":app")
  
