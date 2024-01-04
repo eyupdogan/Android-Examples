@@ -68,21 +68,21 @@ class MainActivity : AppCompatActivity()
         mBinding.wikiInfoAdapter!!.clear()
         val call = wikiSearchService.findByQ(mBinding.q!!, mBinding.maxRows, "csystem")
 
-        request(call)
-    }
-
-    private fun<T> request(call: Call<T>)
-    {
-        call.enqueue(object : Callback<T>
-        {
-            override fun onResponse(call: Call<T>, response: Response<T>)
+        call.enqueue(object :Callback<WikiSearch>{
+            override fun onResponse(call: Call<WikiSearch>, response: Response<WikiSearch>)
             {
-                TODO("Not yet implemented")
+                val wikiSearch = response.body()
+
+                if (wikiSearch?.wikiInfo != null){
+                    wikiSearch.wikiInfo.forEach { mBinding.wikiInfoAdapter!!.add(it) }
+                    mBinding.wikiInfoAdapter!!.notifyDataSetChanged()
+                }else
+                    Toast.makeText(this@MainActivity, "Error in service", Toast.LENGTH_SHORT).show()
             }
 
-            override fun onFailure(call: Call<T>, t: Throwable)
+            override fun onFailure(call: Call<WikiSearch>, ex: Throwable)
             {
-                TODO("Not yet implemented")
+                Toast.makeText(this@MainActivity, "Exception occurs ${ex.message}", Toast.LENGTH_SHORT).show()
             }
         })
     }
