@@ -14,17 +14,17 @@ Yapılacaklar:
    durumda olacaktır. Country kodları bir spinner widget ile verilecektir. Bir kaç ülke kodu ile
    test edebilirsiniz. Ülkeler ve kod bilgilerini dilerseniz sqlite içerisinde tutabilirsiniz
 
-   WikiSearch button'u ile Geonames wikisearch servisi consume edilecek ve ilgili bilgiler o servisten
+  +WikiSearch button'u ile Geonames wikisearch servisi consume edilecek ve ilgili bilgiler o servisten
    alınacaktır.
 
-   PostalCodeSearch button'u ile Geonames postalCodeSearch servisi consume edilecek ve ilgili bilgiler
+  +PostalCodeSearch button'u ile Geonames postalCodeSearch servisi consume edilecek ve ilgili bilgiler
    o servisten alınacaktır.
 
 
 + Her bir web servis için işlemler ayrı modüllerde olacaktır. Base url gbi ortak bazı işlemler için
 ayrı bir ortak modül kullanılabilir.
 
-- İlgili Listview'un bir elemanına click yapıldığında ayrı bir activity açılacak ve bilgiler orada
++ İlgili Listview'un bir elemanına click yapıldığında ayrı bir activity açılacak ve bilgiler orada
 gösterilecektir.
 
 - İlgili activity içerisinde bir save buttonu olacak ve save button'una basıldığında sorgulanan bilgiler
@@ -35,7 +35,7 @@ yapılacaktır. Her iki servis için de aynı veritabanı kullanılacaktır.
 için uyarı verilecek ve save işlemi yapılmayacaktır.
 
 - GET işlemi sırasında bilgiler, eğer sorgulanan bilgi daha önce sorgulanmış ve kaydedilmişse web
-servis yerine local veritabanından elde edilecektir. Sorgulama işlemi lokalden yapılmışsa yapılma
+servis yerine local veritabanından elde edilecektir. Sorgulama işlemi locale den yapılmışsa yapılma
 zamanları da ayrı ayrı tutulacaktır.
 
 - MaxRow sayısı localde tutulan maxRow'dan büyükse veri servisten alınacaktır. Save işleminde veri
@@ -44,9 +44,12 @@ işlemler yapılacaktır. Güncelleme yapılacaksa eski veriler silinecektir. Ş
 bilgisinin tutulduğu tablodan veri silinmesine gerek yoktur. Yapılma zamanlarına ilişkin veriler de
 silinmeyecektir.
 
-- Local veritabanında sorgulana tarih zaman bilgileri de tutulacaktır.
++ Local veritabanında sorgulama tarih zaman bilgileri de tutulacaktır.
 
-- Posta kod için REST servisin genel biçimi şu şekildedir:
++ Posta kod için REST servisin genel biçimi şu şekildedir:
     http://api.geonames.org/postalCodeSearchJSON?postalcode=67000&maxRows=10&username=csystem&country=tr
 
-- Tasarımlar minimal olarak belirtilmiştir. Bunlar dışında da görsel eklentiler yapılabilir
++ Tasarımlar minimal olarak belirtilmiştir. Bunlar dışında da görsel eklentiler yapılabilir
+
+
+? ListView eleman sayısı fazla olunca alttaki button lar (get, save) görünmüyor
