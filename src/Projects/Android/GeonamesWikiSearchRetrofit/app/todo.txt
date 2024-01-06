@@ -31,16 +31,16 @@ gösterilecektir.
 belirlenen bir sqlite veritabanına yazılacaktır. Yazılma işlemi bir AlertDialog ile onaylandığında
 yapılacaktır. Her iki servis için de aynı veritabanı kullanılacaktır.
 
-- Veritabanı dosyalarının kapladığı alan save işlemi yapıldığında 1GB'ı geçmiş olacaksa save işlemi
-için uyarı verilecek ve save işlemi yapılmayacaktır.
-
 + GET işlemi sırasında bilgiler, eğer sorgulanan bilgi daha önce sorgulanmış ve kaydedilmişse web
 servis yerine local veritabanından elde edilecektir. Sorgulama işlemi locale den yapılmışsa yapılma
 zamanları da ayrı ayrı tutulacaktır.
 
-- MaxRow sayısı localde tutulan maxRow'dan büyükse veri servisten alınacaktır. Save işleminde veri
+- Veritabanı dosyalarının kapladığı alan save işlemi yapıldığında 1GB'ı geçmiş olacaksa save işlemi
+için uyarı verilecek ve save işlemi yapılmayacaktır.
+
++ MaxRow sayısı localde tutulan maxRow'dan büyükse veri servisten alınacaktır. Save işleminde veri
 daha önce kaydedilmişse, bir AlertDialog ile güncelleme yapılıp yapılmadığı sorulacak ve ona göre
-işlemler yapılacaktır. Güncelleme yapılacaksa eski veriler silinecektir. Şüphesiz Q'nun  ve posta kodu
+işlemler yapılacaktır. Güncelleme yapılacaksa eski veriler silinecektir. Şüphesiz Q'nun ve posta kodu
 bilgisinin tutulduğu tablodan veri silinmesine gerek yoktur. Yapılma zamanlarına ilişkin veriler de
 silinmeyecektir.
 
