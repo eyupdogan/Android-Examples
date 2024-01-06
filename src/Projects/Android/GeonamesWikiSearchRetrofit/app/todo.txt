@@ -3,10 +3,10 @@ Yapılacaklar:
 + Uygulama bir splash screen ile açılacaktır.
 
 + MainActivity içerisinde şu button'lar olacaktır
-    - Settings
-    - WikiSearch
-    - PostalCode Search
-    - Close
+    + Settings
+    + WikiSearch
+    + PostalCode Search
+    + Close
 
   +Settings buttonun'a basıldığında bir activity açılacak ve geonames için username bilgisi country
    bilgisi girilecektir ve kaydedilecektir. Kaydetme işlemini preferences kullanarak yapınız. Eğer
@@ -27,14 +27,14 @@ ayrı bir ortak modül kullanılabilir.
 + İlgili Listview'un bir elemanına click yapıldığında ayrı bir activity açılacak ve bilgiler orada
 gösterilecektir.
 
-- İlgili activity içerisinde bir save buttonu olacak ve save button'una basıldığında sorgulanan bilgiler
++ İlgili activity içerisinde bir save buttonu olacak ve save button'una basıldığında sorgulanan bilgiler
 belirlenen bir sqlite veritabanına yazılacaktır. Yazılma işlemi bir AlertDialog ile onaylandığında
 yapılacaktır. Her iki servis için de aynı veritabanı kullanılacaktır.
 
 - Veritabanı dosyalarının kapladığı alan save işlemi yapıldığında 1GB'ı geçmiş olacaksa save işlemi
 için uyarı verilecek ve save işlemi yapılmayacaktır.
 
-- GET işlemi sırasında bilgiler, eğer sorgulanan bilgi daha önce sorgulanmış ve kaydedilmişse web
++ GET işlemi sırasında bilgiler, eğer sorgulanan bilgi daha önce sorgulanmış ve kaydedilmişse web
 servis yerine local veritabanından elde edilecektir. Sorgulama işlemi locale den yapılmışsa yapılma
 zamanları da ayrı ayrı tutulacaktır.
 

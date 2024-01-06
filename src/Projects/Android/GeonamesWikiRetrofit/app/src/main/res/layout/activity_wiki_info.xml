@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="org.csystem.android.app.geonames.search.viewmodel.listeners.WikiInfoListenerViewModel"/>
+        <import type="org.csystem.android.app.geonames.search.repositorylib.dto.WikiInfoDTO"/>
+        <variable name="viewModel" type="WikiInfoListenerViewModel" />
+        <variable name="wikiInfo" type="org.csystem.android.app.geonames.search.repositorylib.dto.WikiInfoDTO" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".WikiInfoActivity">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{wikiInfo.title}"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{wikiInfo.summary}"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{wikiInfo.wikipediaUrl}"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/button_close_text"
+            android:onClick="@{()->viewModel.handleCloseButtonClicked()}"/>
+    </LinearLayout>
+</layout>
