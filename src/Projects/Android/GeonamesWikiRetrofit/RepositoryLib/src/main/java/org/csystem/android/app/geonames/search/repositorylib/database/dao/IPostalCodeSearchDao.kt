@@ -16,7 +16,7 @@ interface IPostalCodeSearchDao
     fun savePostalCodeList(postalCodeSearchDB: PostalCodeSearchDB)
 
     @Query("""SELECT EXISTS(SELECT * FROM postal_code_search pcs
-        WHERE pcs.postal_code = :postalCode AND pcs.row_count = :rowCount)""")
+        WHERE pcs.postal_code = :postalCode AND pcs.row_count >= :rowCount)""")
     fun existsPostalCodeByPostalCodeNumberAndRowCount(postalCode:String, rowCount:Int):Boolean
 
     @Query("""SELECT * FROM postal_code pc INNER JOIN postal_code_search pcs 

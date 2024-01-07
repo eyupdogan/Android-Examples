@@ -74,7 +74,7 @@ class WikiSearchActivity : AppCompatActivity()
     fun getButtonClicked()
     {
         if (mBinding.wikiSearch!!.q == "" || mBinding.wikiSearch!!.rowCount == 0) {
-            Toast.makeText(this, "please fill inputs", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Please fill inputs", Toast.LENGTH_SHORT).show()
             return
         }
 
@@ -145,6 +145,11 @@ class WikiSearchActivity : AppCompatActivity()
 
     fun saveButtonClicked()
     {
+        if(mWikiInfoList == null){
+            Toast.makeText(this, "No data", Toast.LENGTH_SHORT).show()
+            return
+        }
+
         AlertDialog.Builder(this)
             .setTitle(R.string.save_wiki_info_alert_dialog_title)
             .setMessage(R.string.save_wiki_info_alert_dialog_message)

@@ -65,6 +65,10 @@ class PostalCodeActivity : AppCompatActivity()
 
     fun getButtonClicked()
     {
+        if (mBinding.postalCodeSearch!!.postalCode == "" || mBinding.postalCodeSearch!!.rowCount == 0){
+            Toast.makeText(this, "Please fill inputs", Toast.LENGTH_SHORT).show()
+            return
+        }
         mBinding.postalCodeArrayAdapter!!.clear()
         if (geonamesHelper.existPostalCodeByPostalCodeListDTO(mBinding.postalCodeSearch!!)){
 
@@ -140,6 +144,10 @@ class PostalCodeActivity : AppCompatActivity()
 
     fun saveButtonClicked()
     {
+        if(mPostalCodeList == null){
+            Toast.makeText(this, "No data", Toast.LENGTH_SHORT).show()
+            return
+        }
         AlertDialog.Builder(this)
             .setTitle(R.string.save_postal_code_alert_dialog_title)
             .setMessage(R.string.save_postal_code_alert_dialog_message)
