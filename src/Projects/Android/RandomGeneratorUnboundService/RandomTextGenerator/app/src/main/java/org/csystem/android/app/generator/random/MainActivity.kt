@@ -1,14 +1,10 @@
-/*--------------------------------------------------------------------------------------------------
-    Service yaratmak için service isimli bir sınıftan türetme yapmak ve android manifest dosyasında
-    o service i servis olarak belirtmek gerekiyor
-
-    RandomTextGenerator isimli bir proje oluşturduk ve gerekli dependency leri ekledik
---------------------------------------------------------------------------------------------------*/
 package org.csystem.android.app.generator.random
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import org.csystem.android.app.generator.random.data.RandomTextGeneratorInfo
+import org.csystem.android.app.generator.random.global.RANDOM_TEXT_GENERATOR_INFO
 
 class MainActivity : AppCompatActivity()
 {
@@ -16,6 +12,10 @@ class MainActivity : AppCompatActivity()
     {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        startService(Intent(this, RandomGeneratorService::class.java))
+        Intent(this, RandomGeneratorService::class.java).apply {
+            putExtra(RANDOM_TEXT_GENERATOR_INFO, RandomTextGeneratorInfo("test.txt", 20, 5, 12))
+            startService(this)
+            finish()
+        }
     }
 }
