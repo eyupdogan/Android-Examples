@@ -36,7 +36,7 @@ class RandomGeneratorService : Service()
 
     @Inject
     lateinit var threadPool:ExecutorService
-    
+
     @Inject
     @LocalDateTimeFormatterInterceptor
     lateinit var formatter:DateTimeFormatter
