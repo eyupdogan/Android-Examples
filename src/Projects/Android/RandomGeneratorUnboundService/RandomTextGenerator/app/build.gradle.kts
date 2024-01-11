@@ -37,10 +37,11 @@ android {
     kotlinOptions {
         jvmTarget = "17"
     }
+
+    dataBinding.enable = true
 }
 
 dependencies {
-
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.11.0")
@@ -52,4 +53,6 @@ dependencies {
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.4")
     implementation ("com.google.dagger:hilt-android:2.48")
     ksp("com.google.dagger:hilt-compiler:2.48")
+
+    implementation("org.csystem.android:org-csystem-android-datetime:21.0.1")
 }

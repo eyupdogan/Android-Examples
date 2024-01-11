@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">RandomTextGenerator</string>
+    <string name="file_name_hint_text">File Name</string>
+    <string name="count_hint_text">Count</string>
+    <string name="min_hint_text">Min</string>
+    <string name="bound_hint_text">Bound</string>
+    <string name="switch_text">Create New Service</string>
+    <string name="start_service_button_text">Start Service</string>
+
 </resources>

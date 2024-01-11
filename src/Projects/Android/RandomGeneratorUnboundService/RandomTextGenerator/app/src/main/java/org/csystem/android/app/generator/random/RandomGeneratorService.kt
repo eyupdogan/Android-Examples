@@ -9,8 +9,12 @@ import android.os.Looper
 import android.os.Message
 import android.widget.Toast
 import dagger.hilt.android.AndroidEntryPoint
-import org.csystem.android.app.generator.random.data.RandomTextGeneratorInfo
+import org.csystem.android.app.generator.random.global.IS_ABLE_TO_CREATE_NEW_SERVICE
 import org.csystem.android.app.generator.random.global.RANDOM_TEXT_GENERATOR_INFO
+import org.csystem.android.app.generator.random.global.WHAT_EXCEPTION
+import org.csystem.android.app.generator.random.global.WHAT_IO_EXCEPTION
+import org.csystem.android.app.generator.random.global.WHAT_TEXT_DISPLAY
+import org.csystem.android.app.generator.random.viewmodel.data.RandomTextGeneratorInfo
 import java.io.BufferedWriter
 import java.io.IOException
 import java.io.OutputStreamWriter
@@ -22,13 +26,12 @@ import java.util.concurrent.ExecutorService
 import javax.inject.Inject
 import kotlin.random.Random
 
-const val WHAT_TEXT_DISPLAY = 1
-const val WHAT_EXCEPTION = -1
-const val WHAT_IO_EXCEPTION = -2
+
 @AndroidEntryPoint
 class RandomGeneratorService : Service()
 {
     private lateinit var mHandler:RandomGeneratorHandler
+    private var mIsAbleToCreateNewService:Boolean? = null
 
     @Inject
     lateinit var threadPool:ExecutorService
@@ -48,6 +51,7 @@ class RandomGeneratorService : Service()
         {
             val service = mWeakReference.get()!!
             when(msg.what){
+                WHAT_TEXT_DISPLAY -> Toast.makeText(service, msg.obj.toString(), Toast.LENGTH_SHORT).show()
                 WHAT_IO_EXCEPTION -> Toast.makeText(service, "IO problem:${msg.obj}", Toast.LENGTH_SHORT).show()
                 WHAT_EXCEPTION -> Toast.makeText(service, "problem:${msg.obj}", Toast.LENGTH_SHORT).show()
             }
@@ -61,15 +65,18 @@ class RandomGeneratorService : Service()
         generateSequence(0) {it + 1}.takeWhile { it <= count }
             .forEach {_ -> sb.append((if (random.nextBoolean()) 'A' else 'a') + random.nextInt(26))  }
 
+
+
         return sb.toString()
     }
 
     private fun randomGeneratorOutputForEachCallback(info: RandomTextGeneratorInfo, bw:BufferedWriter)
-
     {
         try {
-            bw.run {write("${createRandomText(Random.nextInt(info.min, info.bound))} ${formatter.format(dateTime)}"); newLine();flush() }
+            val generatedText = "${createRandomText(Random.nextInt(info.min, info.bound))} ${formatter.format(dateTime)}"
+            bw.run {write(generatedText); newLine();flush() }
             Thread.sleep(Random.nextLong(300, 1001))
+            mHandler.sendMessage(mHandler.obtainMessage(WHAT_TEXT_DISPLAY, generatedText))
         }catch (ex:IOException){
             mHandler.sendMessage(mHandler.obtainMessage(WHAT_IO_EXCEPTION, ex.message))
         }catch (ex:Throwable){
@@ -91,7 +98,10 @@ class RandomGeneratorService : Service()
             openFileOutput(info.fileName, MODE_APPEND)
                 .use { BufferedWriter(OutputStreamWriter(it, StandardCharsets.UTF_8)).apply{ randomGeneratorOutputCallback(info, this)} }
 
-           // stopSelf()
+            if (!mIsAbleToCreateNewService!!){
+                Toast.makeText(this, "İkinci service yaratılamıyor", Toast.LENGTH_SHORT).show()
+                stopSelf()
+            }
         }catch (ex:IOException){
             mHandler.sendMessage(mHandler.obtainMessage(WHAT_IO_EXCEPTION, ex.message))
         }catch (ex:Throwable){
@@ -102,6 +112,7 @@ class RandomGeneratorService : Service()
     private fun initialize(intent: Intent?)
     {
         mHandler = RandomGeneratorHandler(this)
+        mIsAbleToCreateNewService = intent?.getBooleanExtra(IS_ABLE_TO_CREATE_NEW_SERVICE, false)!!
         threadPool.execute { randomGeneratorCallback(getRandomTextGeneratorInfo(intent)) }
     }
 
@@ -123,7 +134,6 @@ class RandomGeneratorService : Service()
                 RandomTextGeneratorInfo::class.java
             )
         }!!
-
     }
 
     override fun onDestroy()

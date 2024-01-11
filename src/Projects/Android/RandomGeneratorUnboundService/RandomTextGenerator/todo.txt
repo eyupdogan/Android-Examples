@@ -1,4 +1,4 @@
-- MainActivity üzerinde aşağıdaki görsel elemanlar bulunacaktır
++ MainActivity üzerinde aşağıdaki görsel elemanlar bulunacaktır
     - EditText: Dosya ismi
     - EditText: count
     - EditText: min
@@ -6,12 +6,12 @@
     - Switch: Servis çalışırken tekrar yeni bir servisin başlatılıp başlatılmayacağı
     - Button: Basıldığında ilgili servis başlatılacak ve Activity kapatılacaktır.
 
-- Activity kapatılırken son girilen değerler preferences ile saklanacak ve activity tekrar
++ Activity kapatılırken son girilen değerler preferences ile saklanacak ve activity tekrar
 açıldığında yüklenecektir.
 
-- Servis içerisinde her üretilen yazı Toast mesajı ile gösterilecektir.
++ Servis içerisinde her üretilen yazı Toast mesajı ile gösterilecektir.
 
-- İkinci servisin yaratılamadığı durum mesaj olarak bildirilecektir.
++ İkinci servisin yaratılamadığı durum mesaj olarak bildirilecektir.
 
 - LocalDatetime ve DateTimeFormatter maven remote repository'den kullanılacaktır
 

@@ -1,18 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <data>
+        <import type="org.csystem.android.app.generator.random.viewmodel.listeners.MainActivityListenerViewModel"/>
+        <import type="org.csystem.android.app.generator.random.viewmodel.data.RandomTextGeneratorInfo"/>
+        <import type="org.csystem.android.app.generator.random.viewmodel.converter.CountStringConverter"/>
+        <import type="org.csystem.android.app.generator.random.viewmodel.converter.MinStringConverter"/>
+        <import type="org.csystem.android.app.generator.random.viewmodel.converter.BoundStringConverter"/>
+        <variable name="viewModel" type="org.csystem.android.app.generator.random.viewmodel.listeners.MainActivityListenerViewModel" />
+        <variable name="randomTextGeneratorInfo" type="org.csystem.android.app.generator.random.viewmodel.data.RandomTextGeneratorInfo" />
+        <variable name="isChecked" type="Boolean" />
+    </data>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".MainActivity">
+
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="text"
+            android:hint="@string/file_name_hint_text"
+            android:text="@={randomTextGeneratorInfo.fileName}" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/count_hint_text"
+            android:inputType="number"
+            android:text="@={CountStringConverter.INSTANCE.toStr(randomTextGeneratorInfo.count)}" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/min_hint_text"
+            android:inputType="number"
+            android:text="@={MinStringConverter.INSTANCE.toStr(randomTextGeneratorInfo.min)}"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/bound_hint_text"
+            android:inputType="number"
+            android:text="@={BoundStringConverter.INSTANCE.toStr(randomTextGeneratorInfo.bound)}"/>
+
+        <Switch
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/switch_text"
+            android:checked="@={isChecked}"
+            android:onCheckedChanged="@{(bw,isChecked)-> viewModel.handleCreateNewServiceSwitchButton(isChecked)}"
+            android:text="Switch" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="@{()->viewModel.handleStartServiceButton()}"
+            android:text="@string/start_service_button_text" />
+    </LinearLayout>
+</layout>
