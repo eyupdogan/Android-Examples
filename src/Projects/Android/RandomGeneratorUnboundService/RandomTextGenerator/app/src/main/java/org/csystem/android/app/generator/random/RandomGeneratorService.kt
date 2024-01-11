@@ -15,6 +15,7 @@ import org.csystem.android.app.generator.random.global.WHAT_EXCEPTION
 import org.csystem.android.app.generator.random.global.WHAT_IO_EXCEPTION
 import org.csystem.android.app.generator.random.global.WHAT_TEXT_DISPLAY
 import org.csystem.android.app.generator.random.viewmodel.data.RandomTextGeneratorInfo
+import org.csystem.android.util.datetime.di.module.formatter.annotation.LocalDateTimeFormatterInterceptor
 import java.io.BufferedWriter
 import java.io.IOException
 import java.io.OutputStreamWriter
@@ -35,11 +36,9 @@ class RandomGeneratorService : Service()
 
     @Inject
     lateinit var threadPool:ExecutorService
-
+    
     @Inject
-    lateinit var dateTime: LocalDateTime
-
-    @Inject
+    @LocalDateTimeFormatterInterceptor
     lateinit var formatter:DateTimeFormatter
 
 
@@ -65,15 +64,13 @@ class RandomGeneratorService : Service()
         generateSequence(0) {it + 1}.takeWhile { it <= count }
             .forEach {_ -> sb.append((if (random.nextBoolean()) 'A' else 'a') + random.nextInt(26))  }
 
-
-
         return sb.toString()
     }
 
     private fun randomGeneratorOutputForEachCallback(info: RandomTextGeneratorInfo, bw:BufferedWriter)
     {
         try {
-            val generatedText = "${createRandomText(Random.nextInt(info.min, info.bound))} ${formatter.format(dateTime)}"
+            val generatedText = "${createRandomText(Random.nextInt(info.min, info.bound))} ${formatter.format(LocalDateTime.now())}"
             bw.run {write(generatedText); newLine();flush() }
             Thread.sleep(Random.nextLong(300, 1001))
             mHandler.sendMessage(mHandler.obtainMessage(WHAT_TEXT_DISPLAY, generatedText))

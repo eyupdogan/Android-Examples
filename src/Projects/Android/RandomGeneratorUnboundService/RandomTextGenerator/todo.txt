@@ -13,6 +13,6 @@ açıldığında yüklenecektir.
 
 + İkinci servisin yaratılamadığı durum mesaj olarak bildirilecektir.
 
-- LocalDatetime ve DateTimeFormatter maven remote repository'den kullanılacaktır
++ LocalDatetime ve DateTimeFormatter maven remote repository'den kullanılacaktır
 
 
