@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="org.csystem.android.app.geonames.search.viewmodel.listeners.WikiSearchActivityListenerViewModel"/>
+        <import type="org.csystem.android.app.geonames.search.wikisearch.api.entity.WikiInfo"/>
+        <import type="org.csystem.android.app.geonames.search.viewmodel.converter.RowCountStringConverter"/>
+        <import type="org.csystem.android.app.geonames.search.repositorylib.dto.WikiSearchDBDTO"/>
+        <import type="android.widget.ArrayAdapter"/>
+        <variable name="wikiSearch" type="org.csystem.android.app.geonames.search.repositorylib.dto.WikiSearchDBDTO" />
+        <variable name="wikiInfoPos" type="int" />
+        <variable name="viewModel" type="WikiSearchActivityListenerViewModel" />
+        <variable name="wikiSearchArrayAdapter" type="ArrayAdapter&lt;WikiInfo&gt;" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".WikiSearchActivity">
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@={wikiSearch.q}"
+            android:hint="@string/edittext_q_hint_text"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@={RowCountStringConverter.INSTANCE.toStr(wikiSearch.rowCount)}"
+            android:hint="@string/edittext_row_count_hint_text"/>
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:selectedItemPosition="@{wikiInfoPos}"
+            android:onItemClick="@{(p,v, pos, i) -> viewModel.handleWikiSearchItemClicked(pos)}"
+            android:adapter="@{wikiSearchArrayAdapter}"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/button_get_text"
+            android:onClick="@{()->viewModel.handleGetButtonClicked()}"
+            />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/button_save_text"
+            android:onClick="@{()->viewModel.handleSaveButtonClicked()}"
+            />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/button_query_list_text"
+            android:onClick="@{()->viewModel.handleQueryListButtonClicked()}"
+            />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/button_close_text"
+            android:onClick="@{()->viewModel.handleCloseButtonClicked()}"
+            />
+    </LinearLayout>
+</layout>

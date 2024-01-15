@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">GeonamesWikiRetrofit</string>
+    <string name="button_settings_text">Settings</string>
+    <string name="button_wiki_search_text">WikiSearch</string>
+    <string name="button_postal_code_search_text">PostalCodeSearch</string>
+    <string name="button_close_text">Close</string>
+    <string name="button_back_text">Back</string>
+    <string name="button_get_text">Get</string>
+    <string name="button_save_text">Save</string>
+    <string name="button_query_list_text">Query List</string>
+    <string name="button_save_and_back_text">Save And Back</string>
+    <string name="edittext_username_hint_text">Username</string>
+    <string name="edittext_postal_code_hint_text">Postal Code</string>
+    <string name="edittext_q_hint_text">City Name</string>
+    <string name="edittext_row_count_hint_text">Row Count</string>
+    <string name="save_wiki_info_alert_dialog_title">Save Wiki Info List</string>
+    <string name="save_wiki_info_alert_dialog_message">All info will save local db</string>
+    <string name="save_wiki_info_alert_dialog_ok_text">Yes</string>
+    <string name="save_wiki_info_alert_dialog_no_text">No</string>
+
+    <string name="save_postal_code_alert_dialog_title">Save Postal Code List</string>
+    <string name="save_postal_code_alert_dialog_message">All info will save local db</string>
+    <string name="save_postal_code_alert_dialog_ok_text">Yes</string>
+    <string name="save_postal_code_alert_dialog_no_text">No</string>
+    <string-array name="spinner_country_codes">
+        <item>tr</item>
+        <item>en</item>
+        <item>de</item>
+        <item>fr</item>
+    </string-array>
+</resources>
