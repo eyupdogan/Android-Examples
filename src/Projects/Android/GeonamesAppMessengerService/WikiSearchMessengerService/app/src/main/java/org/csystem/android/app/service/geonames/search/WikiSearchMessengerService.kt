@@ -12,7 +12,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import org.csystem.android.app.service.geonames.search.api.IGeonamesWikiSearchService
 import org.csystem.android.app.service.geonames.search.api.WikiSearch
 import retrofit2.Call
-import retrofit2.Callback
 import retrofit2.Response
 import java.lang.ref.WeakReference
 import java.time.format.DateTimeFormatter
@@ -72,7 +71,7 @@ class WikiSearchMessengerService : Service()
             super.handleMessage(msg)
         }
     }
-    
+
     override fun onBind(intent: Intent): IBinder
     {
         Toast.makeText(this, "client bounded", Toast.LENGTH_SHORT).show()

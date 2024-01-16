@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".application.WikiSearchMessengerServiceApplication"
         android:allowBackup="true"
@@ -15,6 +16,17 @@
         android:theme="@style/Theme.WikiSearchMessengerService"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
+        <service
+            android:name=".WikiSearchMessengerService"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="org.csystem.app.service.geonames.search.WIKI" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </service>
+
         <activity
             android:name=".MainActivity"
             android:exported="true">
