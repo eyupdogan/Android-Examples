@@ -5,7 +5,9 @@ import android.content.Context
 import android.content.Intent
 import android.content.ServiceConnection
 import android.os.Bundle
+import android.os.DeadObjectException
 import android.os.IBinder
+import android.os.Message
 import android.os.Messenger
 import android.os.RemoteException
 import android.util.Log
@@ -28,6 +30,7 @@ const val MAX_ROWS = "MAX_ROWS"
 
 const val WIKI_SEARCH_SERVICE_ACTION_NAME = "org.csystem.app.service.geonames.search.WIKI"
 const val WIKI_SEARCH_SERVICE_PACKAGE_NAME = "org.csystem.android.app.service.geonames.search"
+const val WHAT_WIKI_SEARCH = 0
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity()
@@ -109,6 +112,23 @@ class MainActivity : AppCompatActivity()
         }
     }
 
+    private fun sendData()
+    {
+        try {
+//            val message = Message.obtain(null, WHAT_WIKI_SEARCH, mBinding.maxRows, 0, mBinding.q!!)
+            val message = Message.obtain(null, WHAT_WIKI_SEARCH, mBinding.maxRows, 0)
+
+            //message.replyTo = mReplyMessenger
+            mRequestMessenger?.send(message)
+        }catch (ex:DeadObjectException){
+            Log.d("dead-object-ex", ex.message ?: "Dead object!!..")
+            Toast.makeText(this, "Connection problem!...", Toast.LENGTH_LONG).show()
+        }catch (ex: Throwable) {
+            Log.d("send-ex", ex.message ?: "General problem occurred!!..")
+            Toast.makeText(this, "Problem occurred!...", Toast.LENGTH_LONG).show()
+        }
+    }
+
     override fun onStart()
     {
         try {
@@ -117,7 +137,7 @@ class MainActivity : AppCompatActivity()
             Log.d("bind-service", ex.message ?: "Bind problem occurred!!..")
             Toast.makeText(this, "Remote problem!...", Toast.LENGTH_LONG).show()
         }catch (ex: Throwable) {
-            Log.d("bind-service_ex", ex.message ?: "General roblem occurred!!..")
+            Log.d("bind-service_ex", ex.message ?: "General problem occurred!!..")
             Toast.makeText(this, "Problem occurred!...", Toast.LENGTH_LONG).show()
         }
         super.onStart()
@@ -133,7 +153,7 @@ class MainActivity : AppCompatActivity()
             Toast.makeText(this, "Remote problem!...", Toast.LENGTH_LONG).show()
         }
         catch (ex: Throwable) {
-            Log.d("unbind-service_ex", ex.message ?: "General roblem occurred!!..")
+            Log.d("unbind-service_ex", ex.message ?: "General problem occurred!!..")
             Toast.makeText(this, "Problem occurred!...", Toast.LENGTH_LONG).show()
         }
         super.onStop()
@@ -152,5 +172,17 @@ class MainActivity : AppCompatActivity()
             apply()
         }
         super.onDestroy()
+    }
+
+    fun searchButtonClicked()
+    {
+        try {
+            if (mBound){
+                sendData()
+            }
+        }catch (ex: Throwable) {
+            Log.d("search-ex", ex.message ?: "General problem occurred!!..")
+            Toast.makeText(this, "Problem occurred try again later!...", Toast.LENGTH_LONG).show()
+        }
     }
 }

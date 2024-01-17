@@ -42,7 +42,7 @@ class WikiSearchMessengerService : Service()
         {
             val service = mWeakReference.get()!!
             val wikiService = service.wikiSearchService
-            val call = wikiService.findByQ("zonguldak", 10, "csystem")
+            val call = wikiService.findByQ("riva", maxRows, "csystem")
 
             call.enqueue(object : retrofit2.Callback<WikiSearch>
             {
@@ -66,7 +66,8 @@ class WikiSearchMessengerService : Service()
         override fun handleMessage(msg: Message)
         {
             when(msg.what){
-                WHAT_WIKI_SEARCH -> wikiSearchCallback(msg.obj.toString(), msg.arg1)
+//                WHAT_WIKI_SEARCH -> wikiSearchCallback(msg.obj.toString(), msg.arg1)
+                WHAT_WIKI_SEARCH -> wikiSearchCallback("", msg.arg1)
             }
             super.handleMessage(msg)
         }

@@ -1,3 +1,7 @@
+/*--------------------------------------------------------------------------------------------------
+    Bir service sınıfını binder yapan onBind metodunun override edilmesi ve aynı zamanda manifest e
+    eklenen intent filter lar ile o sınıfın dışarıdan erişilebilir hale getirilmesidir.
+--------------------------------------------------------------------------------------------------*/
 package org.csystem.android.app.service.geonames.search.api.di.module.retrofit
 
 import dagger.Module
