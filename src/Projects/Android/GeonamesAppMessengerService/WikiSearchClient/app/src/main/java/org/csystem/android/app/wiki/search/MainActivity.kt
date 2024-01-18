@@ -19,6 +19,10 @@ import dagger.hilt.android.AndroidEntryPoint
 import org.csystem.android.app.wiki.search.databinding.ActivityMainBinding
 import org.csystem.android.app.wiki.search.viewmodel.data.WikiInfo
 import org.csystem.android.app.wiki.search.viewmodel.listeners.MainActivityViewModel
+import org.csystem.android.library.service.search.wiki.common.Common
+import org.csystem.android.library.service.search.wiki.common.Common.WHAT_WIKI_SEARCH
+import org.csystem.android.library.service.search.wiki.common.Common.WIKI_SEARCH_SERVICE_ACTION_NAME
+import org.csystem.android.library.service.search.wiki.common.Common.WIKI_SEARCH_SERVICE_PACKAGE_NAME
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import javax.inject.Inject
@@ -28,9 +32,7 @@ const val LAST_OPEN_BEFORE = "LAST_OPEN_BEFORE"
 const val Q = "Q"
 const val MAX_ROWS = "MAX_ROWS"
 
-const val WIKI_SEARCH_SERVICE_ACTION_NAME = "org.csystem.app.service.geonames.search.WIKI"
-const val WIKI_SEARCH_SERVICE_PACKAGE_NAME = "org.csystem.android.app.service.geonames.search"
-const val WHAT_WIKI_SEARCH = 0
+
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity()
@@ -115,9 +117,10 @@ class MainActivity : AppCompatActivity()
     private fun sendData()
     {
         try {
-//            val message = Message.obtain(null, WHAT_WIKI_SEARCH, mBinding.maxRows, 0, mBinding.q!!)
-            val message = Message.obtain(null, WHAT_WIKI_SEARCH, mBinding.maxRows, 0)
 
+            val message = Message.obtain(null, Common.WHAT_WIKI_SEARCH)
+            message.data.putString(Common.BUNDLE_KEY_TEXT, mBinding.q!!)
+            message.data.putInt(Common.BUNDLE_KEY_MAX_ROWS, mBinding.maxRows)
             //message.replyTo = mReplyMessenger
             mRequestMessenger?.send(message)
         }catch (ex:DeadObjectException){
