@@ -20,7 +20,7 @@ class PaymentApplicationHelper @Inject constructor()
     @Inject
     lateinit var paymentRepository: IPaymentRepository
 
-    fun saveUser(user:User):User
+    fun saveUser(user:User):User?
     {
         try {
             return userRepository.save(user)

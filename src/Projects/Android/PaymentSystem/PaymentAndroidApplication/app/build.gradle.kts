@@ -65,4 +65,6 @@ dependencies {
 
     implementation("androidx.room:room-runtime:$roomVersion")
     ksp("androidx.room:room-compiler:$roomVersion")
+
+    implementation("com.karandev:com-karandev-util-data:20.0.0")
 }
