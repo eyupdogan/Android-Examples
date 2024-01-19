@@ -3,8 +3,10 @@ package org.csystem.android.app.payment
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
+import dagger.hilt.android.AndroidEntryPoint
 import org.csystem.android.app.payment.databinding.ActivityMainBinding
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity()
 {
     private lateinit var mBinding:ActivityMainBinding
