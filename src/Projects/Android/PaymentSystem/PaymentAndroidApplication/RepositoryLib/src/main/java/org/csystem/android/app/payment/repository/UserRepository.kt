@@ -49,12 +49,14 @@ class UserRepository @Inject constructor(@ApplicationContext context: Context):I
         return mContext.openFileInput(USER_FILE).use { findByUsernameAndPasswordCallback(it, username, password) }
     }
 
-    ////////////////////////////////////////////////////////////
-
     override fun existsByUsernameAndPassword(username: String, password: String): Boolean
     {
-        TODO("Not implemented yet")
+        return findByUsernameAndPassword(username, password) != null
     }
+
+    ////////////////////////////////////////////////////////////
+
+
 
 
 
