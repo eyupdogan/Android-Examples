@@ -107,5 +107,17 @@ class UserRepositoryInstrumentedTest
         assertFalse(userRepository.existsByUsernameAndPassword("umut", "123sdas4"))
     }
 
+    @Test
+    fun existsByIdSuccessTest()
+    {
+        assertTrue(userRepository.existsById("umut"))
+    }
+
+    @Test
+    fun existsByIdFailTest()
+    {
+        assertFalse(userRepository.existsById("umdasdasut"))
+    }
+
 
 }
