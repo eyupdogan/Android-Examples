@@ -11,4 +11,13 @@ data class User(
     var lastName: String,
     var birthDate:LocalDate,
     var registerDate:LocalDate
-):Serializable
+):Serializable {
+    constructor(
+         username: String,
+         password:String,
+         firstName: String,
+         lastName: String,
+         birthDate:LocalDate,
+         registerDate:LocalDate
+    ):this(username, password, firstName, null, lastName, birthDate, registerDate)
+}

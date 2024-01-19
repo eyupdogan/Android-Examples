@@ -27,7 +27,7 @@ class UserRepository @Inject constructor(@ApplicationContext context: Context):I
 
     private fun findByUsernameAndPasswordCallback(fis:FileInputStream, username: String, password: String):User?
     {
-        var user:User? = null
+        var user:User?
         try {
             while (true){
                 user = ObjectInputStream(fis).readObject() as? User
@@ -35,7 +35,7 @@ class UserRepository @Inject constructor(@ApplicationContext context: Context):I
                     break
             }
         }catch (ignore:EOFException){
-
+            user = null
         }
         return user
     }
