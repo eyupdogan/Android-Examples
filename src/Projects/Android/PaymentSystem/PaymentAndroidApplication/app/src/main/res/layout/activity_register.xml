@@ -6,6 +6,7 @@
     <data>
         <import type="org.csystem.android.app.payment.viewmodel.RegisterActivityListenerViewModel"/>
         <import type="org.csystem.android.app.data.service.dto.UserSaveDTO"/>
+        <import type="org.csystem.android.app.payment.converter.DateStringConverter"/>
         <variable name="viewModel" type="RegisterActivityListenerViewModel" />
         <variable name="user" type="UserSaveDTO" />
     </data>
@@ -61,6 +62,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="@string/edittext_birthdate_hint_text"
+            android:text="@={DateStringConverter.INSTANCE.toStr(user.birthDate)}"
             android:inputType="date"
 
             />
