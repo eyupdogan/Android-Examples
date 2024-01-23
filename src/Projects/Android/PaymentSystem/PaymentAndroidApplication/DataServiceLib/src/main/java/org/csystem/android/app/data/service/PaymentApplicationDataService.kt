@@ -24,6 +24,7 @@ class PaymentApplicationDataService @Inject constructor(
             if (!mPaymentApplicationHelper.existsUserByUsername(loginInfoDTO.username))
                 return false
 
+
             val loginInfo = mLoginInfoMapper.toLoginInfo(loginInfoDTO)
             if (mPaymentApplicationHelper.existsUserByUsernameAndPassword(loginInfoDTO.username, loginInfoDTO.password))
                 mPaymentApplicationHelper.saveLoginInfo(loginInfo)
