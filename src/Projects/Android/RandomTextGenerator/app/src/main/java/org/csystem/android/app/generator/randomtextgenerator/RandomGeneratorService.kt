@@ -17,6 +17,7 @@ import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.concurrent.ExecutorService
 import javax.inject.Inject
+import kotlin.math.abs
 
 const val WHAT_EXCEPTION = -1
 const val WHAT_IO_EXCEPTION = -2
@@ -55,6 +56,7 @@ class RandomGeneratorService : Service()
             mHandler.sendMessage(mHandler.obtainMessage(WHAT_EXCEPTION, ex.message))
         }
     }
+
 
     private fun getRandomTextGeneratorInfo(intent: Intent?):RandomTextGeneratorInfo
     {
