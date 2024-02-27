@@ -1,17 +1,13 @@
 package org.csystem.android.app.hiltapprepeat
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import dagger.hilt.android.AndroidEntryPoint
 import org.csystem.android.app.hiltapprepeat.di.module.datetime.DateInfo
 import org.csystem.android.app.hiltapprepeat.di.module.datetime.DateTimeInfo
 import org.csystem.android.app.hiltapprepeat.di.module.datetime.TimeInfo
-import org.csystem.android.app.hiltapprepeat.di.module.formatter.annotation.DateTimeFormatterInterceptor
-import java.lang.StringBuilder
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
 import javax.inject.Inject
 
 @AndroidEntryPoint
